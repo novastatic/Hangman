@@ -15,7 +15,8 @@ int main()
 {
     const int frameWidth = 65, frameHeight = 30;
     int i, j;
-    // Ausgeben eines Rahmens
+
+    // Output a frame
     for (i = 0; i < frameHeight; i++)
     {
         for (j = 0; j < frameWidth; j++)
@@ -38,7 +39,7 @@ int main()
         printf("\n");
     }
     setCursor(17, 3);
-    printf("Welcome to Hangman\n");
+    printf("\xb0\xb1\xb2 Welcome to Hangman \xb2\xb1\xb0\n");
     setCursor(4, 6);
     userInput();
 
