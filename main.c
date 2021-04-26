@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <windows.h>
+#include <dos.h>
 
 
 void userInput();
@@ -38,10 +39,18 @@ int main()
         }
         printf("\n");
     }
+    // Intro sound
+    Beep(264, 100);
+    Beep(330, 100);
+    Beep(396, 100);
+    Beep(528, 300);
     setCursor(17, 3);
     printf("\xb0\xb1\xb2 Welcome to Hangman \xb2\xb1\xb0\n");
     setCursor(4, 6);
     userInput();
+
+    // End/Errorsound
+    printf("\a");
 
     return 0;
 }
