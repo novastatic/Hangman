@@ -1,13 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <windows.h>
+
 
 void userInput();
 int checkGivenGuesses(char input);
+int setCursor(int x, int y);
+int setColor(char color);
+
+
 
 int main()
 {
+    const int frameWidth = 65, frameHeight = 30;
+    int i, j;
+    // Ausgeben eines Rahmens
+    for (i = 0; i < frameHeight; i++)
+    {
+        for (j = 0; j < frameWidth; j++)
+        {
+            if (i == 0 && j == 0)
+                printf("\xC9");
+            else if (i == 0 && j == frameWidth-1)
+                printf("\xBB");
+            else if (i == frameHeight-1 && j == 0)
+                printf("\xC8");
+            else if (i == frameHeight-1 && j == frameWidth-1)
+                printf("\xBC");
+            else if (i == 0 || i == frameHeight-1)
+                printf("\xCD");
+            else if (j == 0 || j == frameWidth-1)
+                printf("\xBA");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    setCursor(17, 3);
     printf("Welcome to Hangman\n");
+    setCursor(4, 6);
     userInput();
 
     return 0;
@@ -49,5 +81,14 @@ int checkGivenGuesses(char input)
             return 1;
         }
     }
+    return 0;
+}
+
+int setCursor(int x, int y)
+{
+    COORD coordinates;
+    coordinates.X= x;
+    coordinates.Y= y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
     return 0;
 }
