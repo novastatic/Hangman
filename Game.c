@@ -6,14 +6,18 @@
 void runGame()
 {
     char guesses[28];
+    char* solution = malloc(42);
     char guessedLetter;
     int counter = 0;
 
+    generateWord(solution);
+    printf("%s", solution);
     do
     {
         userInput(&guessedLetter, guesses, counter);
         guesses[counter] = guessedLetter;
         counter++;
+
     }
     while(counter < 3);
 }

@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1619883636 source:c:\users\maxim\hangman\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<windows.h>
+	<dos.h>
+
+1619382609 c:\users\maxim\hangman\game.h
+
+1620023921 source:c:\users\maxim\hangman\game.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"FileReading.h"
+
+1619969743 c:\users\maxim\hangman\filereading.h
+
+1619969731 source:c:\users\maxim\hangman\filereading.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<time.h>
+
