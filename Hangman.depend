@@ -23,3 +23,35 @@
 	<string.h>
 	<time.h>
 
+1620029765 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\filereading.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<time.h>
+
+1620029765 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\game.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"FileReading.h"
+
+1620029765 c:\users\alenz\documents\berufsschule\it5\hangman\hangman\filereading.h
+
+1620036011 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<windows.h>
+	<dos.h>
+
+1620036239 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<windows.h>
+	<dos.h>
+	"Interface.h"
+
+1620035993 c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.h
+
