@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include "FileReading.h"
 
+static int partition(char guesses[], int left, int right);
+
 void runGame()
 {
     char guesses[28];
@@ -15,11 +17,16 @@ void runGame()
     do
     {
         userInput(&guessedLetter, guesses, counter);
-        guesses[counter] = guessedLetter;
+        guesses[counter] = tolower(guessedLetter);
         counter++;
 
     }
     while(counter < 3);
+    quickSortGuessArray(guesses, 0, counter - 1);
+    for(int i = 0; i < counter; i++)
+    {
+        printf("%c", guesses[i]);
+    }
 }
 
 void userInput(char* input, char guessArray[], int counter)
@@ -60,4 +67,41 @@ int isLetter(char* letter)
     {
         return 0;
     }
+}
+extern void quickSortGuessArray(char guesses[], int left, int right)
+{
+    int i;
+
+    if (left < right)
+    {
+        i = partition(guesses, left, right);
+        quickSortGuessArray(guesses, left, i - 1);
+        quickSortGuessArray(guesses, i + 1, right);
+    }
+}
+static int partition(char guesses[], int left, int right)
+{
+    int pivot, i, j, temp;
+    pivot = guesses[left];
+    i = left;
+    j = right + 1;
+
+    while(1)
+    {
+        do i++;
+        while(guesses[i] <= pivot && i <= right);
+
+        do j--;
+        while(guesses[j] > pivot);
+
+        if(i >= j) break;
+
+        temp = guesses[i];
+        guesses[i] = guesses[j];
+        guesses[j] = temp;
+    }
+    temp = guesses[left];
+    guesses[left] = guesses[right];
+    guesses[j] = temp;
+    return j;
 }
