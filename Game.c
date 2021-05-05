@@ -14,6 +14,10 @@ void runGame()
 
     generateWord(solution);
     printf("%s", solution);
+
+    setCursor(4, 5);
+    printf("You have already guessed these letters: ");
+
     do
     {
         userInput(&guessedLetter, guesses, counter);
@@ -21,10 +25,14 @@ void runGame()
         counter++;
 
     }
-    while(counter < 3);
+
+    while(counter < 5);
+
     quickSortGuessArray(guesses, 0, counter - 1);
+
     for(int i = 0; i < counter; i++)
     {
+        setCursor(44 + i, 5);
         printf("%c", guesses[i]);
     }
 }
@@ -32,11 +40,11 @@ void runGame()
 void userInput(char* input, char guessArray[], int counter)
 {
     int check;
+    setCursor(4, 7);
 
     do
     {
         check = 0;
-
         printf("Please input your guess: ");
         scanf("%c", input);
         fflush(stdin);

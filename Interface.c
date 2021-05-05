@@ -35,10 +35,10 @@ int setCursor(int x, int y)
  *  This function draws a frame for the game.
  *  It expects values for width and height.
  *
- *  @param int x, int y
+ *  @param const int x, const int y
  *  return int
  **/
- void drawFrame(int frameWidth, int frameHeight)
+ void drawFrame(const int frameWidth, const int frameHeight)
  {
     int i,j;
 
@@ -64,6 +64,59 @@ int setCursor(int x, int y)
         }
         printf("\n");
     }
+
+ }
+
+ int setColor(char color)
+{
+    /*
+    Farbattribute werden durch ZWEI hexadezimale Ziffern angegeben - die erste
+    bezieht sich auf den Hintergrund, die zweite auf den Vordergrund. Jede Ziffer
+    kann einen der folgenden Werte annehmen:
+
+    0 = Schwarz        8 = Dunkelgrau
+    1 = Dunkelblau     9 = Blau
+    2 = Dunkelgrün     A = Grün
+    3 = Blaugrün       B = Zyan
+    4 = Dunkelrot      C = Rot
+    5 = Lila           D = Magenta
+    6 = Ocker          E = Gelb
+    7 = Hellgrau       F = Weiß
+
+    Wenn der COLOR-Befehl ohne Argument aufgerufen wird, werden die Farbein-
+    stellungen wiederhergestellt, mit denen CMD.EXE gestartet wurde. Diese werden
+    durch das aktuelle Konsolenfenster, die /T-Befehlszeilenoption oder durch den
+    Registrierungswert "DefaultColor" bestimmt.
+    */
+    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo( hstdout, &csbi );
+
+    SetConsoleTextAttribute( hstdout, color );
+
+    return 0;
+}
+
+ void drawHangman(int wrongGuess)
+ {
+    printf("  +----+  \n");
+    setCursor(27, 12);
+    printf("  |    |  \n");
+    setCursor(27, 13);
+    printf("  O    |  \n");
+    setCursor(27, 14);
+    printf(" /|\\   |  \n");
+    setCursor(27, 15);
+    printf(" / \\   |  \n");
+    setCursor(27, 16);
+    printf("     / |  \n");
+    setCursor(27, 17);
+    printf("=========\n");
+    setCursor(20, 18);
+    //setColor('4');
+    printf("YOU KILLED THE HANGMAN! \n");
+    //setColor('F');
 
  }
 

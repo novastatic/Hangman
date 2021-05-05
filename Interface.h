@@ -20,7 +20,9 @@
 // Function prototypes for Interface.c
 void sound();
 int setCursor(int x, int y);
+int setColor(char color);
 void drawFrame(int frameWidth, int frameHeight);
+void drawHangman(int wrongGuess);
 
 
 #endif // INTERFACE_H_INCLUDED
