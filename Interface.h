@@ -22,7 +22,7 @@ void sound();
 int setCursor(int x, int y);
 int setColor(char color);
 void drawFrame(int frameWidth, int frameHeight);
-int drawHangman(int wrongGuess);
+void drawHangman(int wrongGuess);
 void drawHeader();
 void countDown(int timeLeft, int winGame);
 int gameModeSelect();

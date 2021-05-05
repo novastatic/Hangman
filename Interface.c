@@ -94,6 +94,24 @@ int gameModeSelect()
     return timeLeft;
  }
 
+ double gameDuration(int endGame)
+ {
+     clock_t begin;
+     double timeSpent;
+     int i = 0;
+
+     begin = clock();
+     for (i = 0;1;i++)
+     {
+         timeSpent = (double)(clock() - begin) / CLOCKS_PER_SEC;
+         if (endgame == 0 || endgame == 1 || endgame == 2)
+         {
+             break;
+             printf("Time spent on this round: %lf seconds. Congrats. \n", timeSpent);
+         }
+     }
+ }
+
  void drawHeader() {
     setCursor(17, 3);
     printf("\xb0\xb1\xb2 _  _ ____ _  _ ____ _  _ ____ _  _ \xb2\xb1\xb0\n");
@@ -105,7 +123,7 @@ int gameModeSelect()
     printf("\xb0\xb1\xb2 ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ \xb2\xb1\xb0\n");
  }
 
- int setColor(char color)
+ /**int setColor(char color)
 {
     /*
     Farbattribute werden durch ZWEI hexadezimale Ziffern angegeben - die erste
@@ -114,19 +132,19 @@ int gameModeSelect()
 
     0 = Schwarz        8 = Dunkelgrau
     1 = Dunkelblau     9 = Blau
-    2 = Dunkelgrün     A = Grün
-    3 = Blaugrün       B = Zyan
+    2 = Dunkelgrï¿½n     A = Grï¿½n
+    3 = Blaugrï¿½n       B = Zyan
     4 = Dunkelrot      C = Rot
     5 = Lila           D = Magenta
     6 = Ocker          E = Gelb
-    7 = Hellgrau       F = Weiß
+    7 = Hellgrau       F = Weiï¿½
 
     Wenn der COLOR-Befehl ohne Argument aufgerufen wird, werden die Farbein-
     stellungen wiederhergestellt, mit denen CMD.EXE gestartet wurde. Diese werden
     durch das aktuelle Konsolenfenster, die /T-Befehlszeilenoption oder durch den
     Registrierungswert "DefaultColor" bestimmt.
     */
-    HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+   /**  HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
 
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo( hstdout, &csbi );
@@ -135,31 +153,36 @@ int gameModeSelect()
 
     return 0;
 }
+*/
 
- int drawHangman(int wrongGuess)
+ void drawHangman(int wrongGuess)
  {
     switch(wrongGuess)
     {
-        case 0: printf(" ");
-        case 1: printf("  +----+  \n");
+        case 0: printf(" "); break;
+        case 1: printf("  +----+  \n");break;
         case 2: setCursor(27, 14);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
+                break;
         case 3: setCursor(27, 15);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
                 printf("  O    |  \n");
+                break;
         case 4: setCursor(27, 16);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
                 printf("  O    |  \n");
                 printf(" /|\\   |  \n");
+                break;
         case 5: setCursor(27, 17);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
                 printf("  O    |  \n");
                 printf(" /|\\   |  \n");
                 printf(" / \\   |  \n");
+                break;
         case 6: setCursor(27, 18);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
@@ -167,6 +190,7 @@ int gameModeSelect()
                 printf(" /|\\   |  \n");
                 printf(" / \\   |  \n");
                 printf("     / |  \n");
+                break;
         case 7: setCursor(27, 19);
                 printf("  +----+  \n");
                 printf("  |    |  \n");
@@ -179,13 +203,13 @@ int gameModeSelect()
                 //setColor('4');
                 printf("YOU KILLED THE HANGMAN! \n");
                 //setColor('F');
-                return 0;
+                break;
     }
  }
 
 /**
- *  This function plays the startup sound. The frequencies and durations to be played are part of the function.
- *  It starts playing when the game starts. The melody is "The hanging tree".
+ *  This function plays the ending sound. The frequencies and durations to be played are part of the function.
+ *  It starts playing when the game ends. The melody is "The hanging tree".
  *
  *  @param none
  *  return void
@@ -217,7 +241,6 @@ void sound()
     };
 
 // Array for durations (1000/4 = 250 = quarter note, 1000/8 = 125 = eighth note etc. )
-
     int durations[53] =
     {
         750, 250,

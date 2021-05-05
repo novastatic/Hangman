@@ -10,18 +10,16 @@
 #include <windows.h>
 #include <dos.h>
 
-
+// Function prototypes
 void userInput();
 void runGame();
 void sound();
 int gameModeSelect();
 void drawFrame(int frameWidth, int frameHeight);
 void drawHeader();
-int drawHangman();
+void drawHangman();
 int checkGivenGuesses(char input);
 int setCursor(int x, int y);
-//int setColor(char color);
-
 
 
 int main()
@@ -33,6 +31,7 @@ int main()
     drawHeader();
 
     setCursor(4, 6);
+    inputNames();
     //gameModeSelect();
     //setCursor(60, 1);
     //countdown(60, 1);
