@@ -19,7 +19,11 @@ void generateWord(char *guessWord[])
     }
     else
     {
-        fgets(guessWord, 42, inputFile);
+        while(line--)
+        {
+            fgets(guessWord, 42, inputFile);
+        }
+
     }
 }
 
