@@ -9,7 +9,7 @@ void generateWord(char *guessWord[])
     FILE *inputFile;
 
     srand(time(NULL));
-    int line = rand() % 10;
+    int line = rand() % 111;
 
     inputFile = fopen("Wordlist.txt", "r");
 
