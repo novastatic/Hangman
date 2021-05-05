@@ -20,6 +20,7 @@
 // Function prototypes for Interface.c
 void sound();
 int setCursor(int x, int y);
+void drawFrame(int frameWidth, int frameHeight);
 
 
 #endif // INTERFACE_H_INCLUDED
