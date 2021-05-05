@@ -15,8 +15,7 @@ void runGame()
 
     generateWord(solution);
 
-    //setCursor(4, 5);
-    //printf("You have already guessed these letters: ");
+
     printf("%s", solution);
 
     do
@@ -43,7 +42,7 @@ void runGame()
 void userInput(char* input, char guessArray[], int counter)
 {
     int check;
-    //setCursor(4, 7);
+    setCursor(4, 19);
 
     do
     {
@@ -134,10 +133,12 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
                 correctGuess = 1;
                 if(i == 0)
                 {
+                    setCursor(4+j, 18);
                     printf("%c",toupper(guesses[j]));
                 }
                 else
                 {
+                    setCursor(4+j, 18);
                     printf("%c", tolower(guesses[j]));
                 }
             }
@@ -148,11 +149,15 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
         }
         if(!correctGuess)
         {
+            setCursor(22, 14);
             printf("_");
         }
     }
     if(lastGuessCorrect)
     {
+        setCursor(22, 12);
+        printf("                     ");
+        setCursor(22, 12);
         printf("Your guess was correct!");
         if(correctGuess)
     {
@@ -162,6 +167,9 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
     }
     else
     {
+        setCursor(12, 12);
+        printf("                     ");
+        setCursor(12, 12);
         printf("Wrong guess sucker!");
         return 0;
     }
