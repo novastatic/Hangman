@@ -15,14 +15,15 @@ void runGame()
     generateWord(solution);
     printf("%s", solution);
 
-    setCursor(4, 5);
-    printf("You have already guessed these letters: ");
+    //setCursor(4, 5);
+    //printf("You have already guessed these letters: ");
 
     do
     {
         userInput(&guessedLetter, guesses, counter);
         guesses[counter] = tolower(guessedLetter);
         counter++;
+        checkGuess(solution, guesses);
 
     }
 
@@ -32,7 +33,7 @@ void runGame()
 
     for(int i = 0; i < counter; i++)
     {
-        setCursor(44 + i, 5);
+        //setCursor(44 + i, 5);
         printf("%c", guesses[i]);
     }
 }
@@ -40,7 +41,7 @@ void runGame()
 void userInput(char* input, char guessArray[], int counter)
 {
     int check;
-    setCursor(4, 7);
+    //setCursor(4, 7);
 
     do
     {
@@ -112,4 +113,35 @@ static int partition(char guesses[], int left, int right)
     guesses[left] = guesses[right];
     guesses[j] = temp;
     return j;
+}
+
+void checkGuess(char solution[], char guesses[])
+{
+    int correctGuess;
+    printf("%i", strlen(guesses));
+    printf("%i", strlen(solution));
+    for(int i = 0; i < strlen(solution) - 1; i++)
+    {
+        correctGuess = 0;
+        for(int j = 0; j < strlen(guesses); j++)
+        {
+            if(tolower(solution[i]) == tolower(guesses[j]))
+            {
+                correctGuess = 1;
+                if(i == 0)
+                {
+                    printf("%c",toupper(guesses[j]));
+                }
+                else
+                {
+                    printf("%c", tolower(guesses[j]));
+                }
+            }
+        }
+        if(!correctGuess)
+        {
+            printf("_");
+        }
+    }
+    printf("\n");
 }
