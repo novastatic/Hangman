@@ -204,3 +204,19 @@ int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
 
     }
 }
+void printGivenGuesses(char guesses[])
+{
+    printf("You guessed letters until now: ");
+    for(int i = 0; i < strlen(guesses); i++)
+    {
+        if(i == strlen(guesses) - 1)
+        {
+            printf("%c", guesses[i]);
+        }
+        else
+        {
+            printf("%c, ", guesses[i]);
+        }
+    }
+    printf("\n");
+}
