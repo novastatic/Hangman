@@ -17,16 +17,26 @@ void runGame()
     char guesses[28];
     char* solution = malloc(42);
     char guessedLetter;
-    int counter = 0, correctGuesses = 0, lastGuessResult, gameState;
+    int counter = 0, correctGuesses = 0, lastGuessResult, gameState = 0;
 
     //generating the guess word
     generateWord(solution);
 
+<<<<<<< HEAD
     //loop for reading input then checking with the guess word and progressing the
     //game accordingly
     do
     {
         //getting user input
+=======
+    double gameDuration(gameState);
+
+    printf("%s", solution);
+
+    do
+    {
+        double gameDuration(gameState);
+>>>>>>> d67a024abb0d39e032cc492873235af66cde33a3
         userInput(&guessedLetter, guesses, counter);
         //saving the given guess of the user to an array of the guesses
         guesses[counter] = tolower(guessedLetter);
@@ -51,11 +61,13 @@ void runGame()
     //checking if the game was lost or won
     if(gameState == 1)
     {
+        setCursor(25, 25);
         printf("Game lost");
     }
     else if(gameState == 2)
     {
-        printf("Game won");
+        setCursor(25, 25);
+        printf("Game won!");
     }
 }
 /**

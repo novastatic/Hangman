@@ -31,18 +31,18 @@ int main()
     drawHeader();
 
     setCursor(4, 16);
+    /**COMING SOON:
     //inputNames();
     //gameModeSelect();
     //setCursor(60, 1);
     //countdown(60, 1);
+    **/
 
     setCursor(4, 23);
     runGame();
 
     // Outro sound
     sound();
-
-
     // End/Errorsound
     printf("\a");
 

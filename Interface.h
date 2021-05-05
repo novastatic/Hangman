@@ -26,6 +26,7 @@ void drawHangman(int wrongGuess);
 void drawHeader();
 void countDown(int timeLeft, int winGame);
 int gameModeSelect();
+double gameDuration(int endGame);
 
 
 
