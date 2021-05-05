@@ -142,7 +142,7 @@ int checkGuess(char solution[], char guesses[], char guessedLetter)
         }
         if(!correctGuess)
         {
-            printf("_");
+            printf("_ ");
         }
     }
     if(lastGuessCorrect)
