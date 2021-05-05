@@ -3,8 +3,6 @@
 #include <ctype.h>
 #include "FileReading.h"
 
-static int partition(char guesses[], int left, int right);
-
 void runGame()
 {
     char guesses[28];
@@ -13,29 +11,26 @@ void runGame()
     int counter = 0;
 
     generateWord(solution);
-    printf("%s", solution);
 
     //setCursor(4, 5);
     //printf("You have already guessed these letters: ");
+    printf("%s", solution);
 
     do
     {
         userInput(&guessedLetter, guesses, counter);
         guesses[counter] = tolower(guessedLetter);
         counter++;
-        checkGuess(solution, guesses);
-
+        quickSortGuessArray(guesses, 0, counter - 1);
+        checkGuess(solution, guesses, guessedLetter);
     }
+    while(counter < 10);
+    printf("%i", counter);
+    puts(guesses);
 
-    while(counter < 5);
 
-    quickSortGuessArray(guesses, 0, counter - 1);
+    printf("\n%s\n", guesses);
 
-    for(int i = 0; i < counter; i++)
-    {
-        //setCursor(44 + i, 5);
-        printf("%c", guesses[i]);
-    }
 }
 
 void userInput(char* input, char guessArray[], int counter)
@@ -45,7 +40,7 @@ void userInput(char* input, char guessArray[], int counter)
 
     do
     {
-        check = 0;
+        check = 1;
         printf("Please input your guess: ");
         scanf("%c", input);
         fflush(stdin);
@@ -54,14 +49,19 @@ void userInput(char* input, char guessArray[], int counter)
         {
             printf("%i", isLetter(*input));
             printf("Your guess is not a letter\n");
+            check = 0;
         }
-        for(int i = 0; i < counter; i++)
-            if(guessArray[i] == *input)
+        else
+        {
+            for(int i = 0; i < counter; i++)
             {
-                printf("You have already guessed this letter!");
-                check--;
+                if(guessArray[i] == *input)
+                {
+                    printf("You have already guessed this letter!");
+                    check = 0;
+                }
             }
-        check++;
+        }
     }
     while(check == 0);
 }
@@ -77,49 +77,47 @@ int isLetter(char* letter)
         return 0;
     }
 }
-extern void quickSortGuessArray(char guesses[], int left, int right)
+void quickSortGuessArray(char guesses[], int left, int right)
 {
-    int i;
+    int i, j, pivot, temp;
 
     if (left < right)
     {
-        i = partition(guesses, left, right);
-        quickSortGuessArray(guesses, left, i - 1);
-        quickSortGuessArray(guesses, i + 1, right);
-    }
-}
-static int partition(char guesses[], int left, int right)
-{
-    int pivot, i, j, temp;
-    pivot = guesses[left];
-    i = left;
-    j = right + 1;
+        pivot = left;
+        i = left;
+        j = right;
 
-    while(1)
-    {
-        do i++;
-        while(guesses[i] <= pivot && i <= right);
-
-        do j--;
-        while(guesses[j] > pivot);
-
-        if(i >= j) break;
-
-        temp = guesses[i];
-        guesses[i] = guesses[j];
+        while(i < j)
+        {
+            while(guesses[i] <= guesses[pivot] && i < right)
+            {
+                i++;
+            }
+            while(guesses[j] > guesses[pivot])
+            {
+                j--;
+            }
+            if(i < j)
+            {
+                temp = guesses[i];
+                guesses[i] = guesses[j];
+                guesses[j] = temp;
+            }
+        }
+        temp = guesses[pivot];
+        guesses[pivot] = guesses[j];
         guesses[j] = temp;
+
+        quickSortGuessArray(guesses, left, j - 1);
+        quickSortGuessArray(guesses, j + 1, right);
     }
-    temp = guesses[left];
-    guesses[left] = guesses[right];
-    guesses[j] = temp;
-    return j;
 }
 
-void checkGuess(char solution[], char guesses[])
+int checkGuess(char solution[], char guesses[], char guessedLetter)
 {
-    int correctGuess, lastGuessCorrect;
-    printf("%i", strlen(guesses));
-    printf("%i", strlen(solution));
+    int correctGuess, lastGuessCorrect = 0;
+    printf("%i, %i\n", strlen(guesses), strlen(solution));
+
     for(int i = 0; i < strlen(solution) - 1; i++)
     {
         correctGuess = 0;
@@ -136,10 +134,10 @@ void checkGuess(char solution[], char guesses[])
                 {
                     printf("%c", tolower(guesses[j]));
                 }
-                if(j == strlen(guesses - 1))
-                {
-                    lastGuessCorrect = 1;
-                }
+            }
+            if(tolower(guessedLetter) == tolower(solution[i]))
+            {
+                lastGuessCorrect = 1;
             }
         }
         if(!correctGuess)
@@ -155,5 +153,13 @@ void checkGuess(char solution[], char guesses[])
     {
         printf("Wrong guess sucker!");
     }
-    printf("\n");
+
+    if(correctGuess)
+    {
+        return 0
+    }
+    else
+    {
+        return 1;
+    }
 }
