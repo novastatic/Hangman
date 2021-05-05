@@ -104,7 +104,7 @@ int gameModeSelect()
      for (i = 0;1;i++)
      {
          timeSpent = (double)(clock() - begin) / CLOCKS_PER_SEC;
-         if (endgame == 0 || endgame == 1 || endgame == 2)
+         if (endGame == 0 || endGame == 1 || endGame == 2)
          {
              break;
              printf("Time spent on this round: %lf seconds. Congrats. \n", timeSpent);
@@ -160,49 +160,48 @@ int gameModeSelect()
     switch(wrongGuess)
     {
         case 0: printf(" "); break;
-        case 1: printf("  +----+  \n");break;
-        case 2: setCursor(27, 14);
-                printf("  +----+  \n");
+        case 1: setCursor(27, 8);
+                printf("  +----+  \n");break;
+        case 2: setCursor(27, 9);
+                //printf("  +----+  \n");
                 printf("  |    |  \n");
                 break;
-        case 3: setCursor(27, 15);
-                printf("  +----+  \n");
-                printf("  |    |  \n");
+        case 3: setCursor(27, 10);
+                //printf("  +----+  \n");
+                //printf("  |    |  \n");
                 printf("  O    |  \n");
                 break;
-        case 4: setCursor(27, 16);
-                printf("  +----+  \n");
-                printf("  |    |  \n");
-                printf("  O    |  \n");
+        case 4: setCursor(27, 11);
+                //printf("  +----+  \n");
+                //printf("  |    |  \n");
+                //printf("  O    |  \n");
                 printf(" /|\\   |  \n");
                 break;
-        case 5: setCursor(27, 17);
-                printf("  +----+  \n");
-                printf("  |    |  \n");
-                printf("  O    |  \n");
-                printf(" /|\\   |  \n");
+        case 5: setCursor(27, 12);
+                //printf("  +----+  \n");
+                //printf("  |    |  \n");
+                //printf("  O    |  \n");
+                //printf(" /|\\   |  \n");
                 printf(" / \\   |  \n");
                 break;
-        case 6: setCursor(27, 18);
-                printf("  +----+  \n");
-                printf("  |    |  \n");
-                printf("  O    |  \n");
-                printf(" /|\\   |  \n");
-                printf(" / \\   |  \n");
+        case 6: setCursor(27, 13);
+                //printf("  +----+  \n");
+                //printf("  |    |  \n");
+                //printf("  O    |  \n");
+                //printf(" /|\\   |  \n");
+                //printf(" / \\   |  \n");
                 printf("     / |  \n");
                 break;
-        case 7: setCursor(27, 19);
-                printf("  +----+  \n");
-                printf("  |    |  \n");
-                printf("  x    |  \n");
-                printf(" /|\\   |  \n");
-                printf(" / \\   |  \n");
-                printf("     / |  \n");
+        case 7: setCursor(27, 14);
+                //printf("  +----+  \n");
+                //printf("  |    |  \n");
+                //printf("  x    |  \n");
+                //printf(" /|\\   |  \n");
+                //printf(" / \\   |  \n");
+                //printf("     / |  \n");
                 printf("=========\n");
-                setCursor(20, 20);
-                //setColor('4');
+                setCursor(20, 15);
                 printf("YOU KILLED THE HANGMAN! \n");
-                //setColor('F');
                 break;
     }
  }

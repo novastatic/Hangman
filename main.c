@@ -25,22 +25,19 @@ int setCursor(int x, int y);
 int main()
 {
     // Draw frame around game
-    drawFrame(75, 20);
+    drawFrame(75, 120);
 
     setCursor(17, 3);
     drawHeader();
 
-    setCursor(4, 6);
-    inputNames();
+    setCursor(4, 16);
+    //inputNames();
     //gameModeSelect();
     //setCursor(60, 1);
     //countdown(60, 1);
 
-    setCursor(4, 6);
+    setCursor(4, 23);
     runGame();
-
-    setCursor(27, 11);
-    drawHangman(7);
 
     // Outro sound
     sound();
