@@ -16,6 +16,8 @@ void runGame();
 void sound();
 int gameModeSelect();
 void drawFrame(int frameWidth, int frameHeight);
+void drawHeader();
+int drawHangman();
 int checkGivenGuesses(char input);
 int setCursor(int x, int y);
 //int setColor(char color);
@@ -31,7 +33,7 @@ int main()
     drawHeader();
 
     setCursor(4, 6);
-    gameModeSelect();
+    //gameModeSelect();
     //setCursor(60, 1);
     //countdown(60, 1);
 
@@ -39,7 +41,7 @@ int main()
     runGame();
 
     setCursor(27, 11);
-    drawHangman(1);
+    drawHangman(7);
 
     // Outro sound
     sound();

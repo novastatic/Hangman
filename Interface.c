@@ -67,9 +67,9 @@ int setCursor(int x, int y)
 
  }
 
- int *gameModeSelect()
+int gameModeSelect()
 {
-    int *modeSelection = 0;
+    int modeSelection = 0;
 
     printf("\bChose your game mode: \n");
     printf("1. Timelord (Type 1 to play against the 60 second timer) \n");
@@ -136,26 +136,51 @@ int setCursor(int x, int y)
     return 0;
 }
 
- void drawHangman(int wrongGuess)
+ int drawHangman(int wrongGuess)
  {
-    printf("  +----+  \n");
-    setCursor(27, 14);
-    printf("  |    |  \n");
-    setCursor(27, 15);
-    printf("  O    |  \n");
-    setCursor(27, 16);
-    printf(" /|\\   |  \n");
-    setCursor(27, 17);
-    printf(" / \\   |  \n");
-    setCursor(27, 18);
-    printf("     / |  \n");
-    setCursor(27, 19);
-    printf("=========\n");
-    setCursor(20, 20);
-    //setColor('4');
-    printf("YOU KILLED THE HANGMAN! \n");
-    //setColor('F');
-
+    switch(wrongGuess)
+    {
+        case 0: printf(" ");
+        case 1: printf("  +----+  \n");
+        case 2: setCursor(27, 14);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+        case 3: setCursor(27, 15);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+                printf("  O    |  \n");
+        case 4: setCursor(27, 16);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+                printf("  O    |  \n");
+                printf(" /|\\   |  \n");
+        case 5: setCursor(27, 17);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+                printf("  O    |  \n");
+                printf(" /|\\   |  \n");
+                printf(" / \\   |  \n");
+        case 6: setCursor(27, 18);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+                printf("  O    |  \n");
+                printf(" /|\\   |  \n");
+                printf(" / \\   |  \n");
+                printf("     / |  \n");
+        case 7: setCursor(27, 19);
+                printf("  +----+  \n");
+                printf("  |    |  \n");
+                printf("  x    |  \n");
+                printf(" /|\\   |  \n");
+                printf(" / \\   |  \n");
+                printf("     / |  \n");
+                printf("=========\n");
+                setCursor(20, 20);
+                //setColor('4');
+                printf("YOU KILLED THE HANGMAN! \n");
+                //setColor('F');
+                return 0;
+    }
  }
 
 /**
