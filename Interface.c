@@ -82,7 +82,13 @@ int gameModeSelect()
 
 }
 
- int countdown(int timeLeft, int winGame)
+ /**
+ * This function is used to counts down from 60 seconds for Timelord-Gamemode.
+ * As a trigger it uses an int that clarifies whether a game has ended.
+ * @param int endGame
+ * return double
+ **/
+ int countdown()
  {
     while(timeLeft != 0 && winGame == 1)
     {
@@ -94,6 +100,12 @@ int gameModeSelect()
     return timeLeft;
  }
 
+ /**
+ * This function is used to access and print the time it took the player(s) to finish a round.
+ * As a trigger it uses an int that clarifies whether a game has ended.
+ * @param int endGame
+ * return double
+ **/
  double gameDuration(int endGame)
  {
      clock_t begin;
@@ -110,8 +122,14 @@ int gameModeSelect()
              printf("Time spent on this round: %lf seconds. Congrats. \n", timeSpent);
          }
      }
+     return timeSpent;
  }
 
+ /**
+ * This function is used to draw a header as welcome message.
+ * @param none
+ * return void
+ **/
  void drawHeader() {
     setCursor(17, 3);
     printf("\xb0\xb1\xb2 _  _ ____ _  _ ____ _  _ ____ _  _ \xb2\xb1\xb0\n");
@@ -123,7 +141,7 @@ int gameModeSelect()
     printf("\xb0\xb1\xb2 ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ \xb2\xb1\xb0\n");
  }
 
- /**int setColor(char color)
+ /** COMING SOON! int setColor(char color)
 {
     /*
     Farbattribute werden durch ZWEI hexadezimale Ziffern angegeben - die erste
