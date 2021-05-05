@@ -31,7 +31,7 @@ int main()
     drawHeader();
 
     setCursor(4, 6);
-    gameModeSelect();
+    //gameModeSelect();
     //setCursor(60, 1);
     //countdown(60, 1);
 
