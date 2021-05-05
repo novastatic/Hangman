@@ -160,9 +160,9 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
     }
     if(lastGuessCorrect)
     {
-        setCursor(22, 12);
-        printf("                     ");
-        setCursor(22, 12);
+        setCursor(42, 12);
+        printf("                             ");
+        setCursor(42, 12);
         printf("Your guess was correct!");
         if(wordComplete)
         {
@@ -172,9 +172,9 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
     }
     else
     {
-        setCursor(12, 12);
-        printf("                     ");
-        setCursor(12, 12);
+        setCursor(42, 12);
+        printf("                           ");
+        setCursor(42, 12);
         printf("Wrong guess sucker!");
         return 0;
     }
@@ -187,7 +187,7 @@ int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
     switch(lastGuessSuccess)
     {
         case 0:
-            //drawHangman(wrongGuesses);
+            drawHangman(wrongGuesses);
             if(wrongGuesses < 7)
             {
                 return 0;
