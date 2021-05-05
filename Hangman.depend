@@ -30,7 +30,7 @@
 	<string.h>
 	<time.h>
 
-1620029765 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\game.c
+1620204238 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\game.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -38,14 +38,14 @@
 
 1620029765 c:\users\alenz\documents\berufsschule\it5\hangman\hangman\filereading.h
 
-1620036011 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\main.c
+1620206022 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
 	<windows.h>
 	<dos.h>
 
-1620036239 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.c
+1620205967 source:c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -53,5 +53,5 @@
 	<dos.h>
 	"Interface.h"
 
-1620035993 c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.h
+1620205959 c:\users\alenz\documents\berufsschule\it5\hangman\hangman\interface.h
 

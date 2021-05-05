@@ -1,3 +1,9 @@
+/**
+* Title: Hangman
+* Author: Maximilian Hedderich & Antonia Lenz
+* Created: 05.05.2021
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -6,6 +12,7 @@
 
 
 void userInput();
+void runGame();
 void sound();
 int checkGivenGuesses(char input);
 int setCursor(int x, int y);
@@ -17,6 +24,8 @@ int main()
 {
     const int frameWidth = 65, frameHeight = 30;
     int i, j;
+
+
 
     // Output a frame
     for (i = 0; i < frameHeight; i++)
@@ -53,11 +62,3 @@ int main()
     return 0;
 }
 
-int setCursor(int x, int y)
-{
-    COORD coordinates;
-    coordinates.X= x;
-    coordinates.Y= y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordinates);
-    return 0;
-}
