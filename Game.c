@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "FileReading.h"
+#include "Interface.h"
+
+int checkGuessSuccess(char solution[], char guesses[], char guessedLetter);
 
 void runGame()
 {
     char guesses[28];
     char* solution = malloc(42);
     char guessedLetter;
-    int counter = 0;
+    int counter = 0, correctGuesses = 0, lastGuessResult, gameState;
 
     generateWord(solution);
 
@@ -22,15 +25,19 @@ void runGame()
         guesses[counter] = tolower(guessedLetter);
         counter++;
         quickSortGuessArray(guesses, 0, counter - 1);
-        checkGuess(solution, guesses, guessedLetter);
+        lastGuessResult = checkGuessSuccess(solution, guesses, guessedLetter);
+        gameState = checkGameState(lastGuessResult, &correctGuesses, counter);
     }
-    while(counter < 10);
-    printf("%i", counter);
-    puts(guesses);
+    while(!gameState);
 
-
-    printf("\n%s\n", guesses);
-
+    if(gameState == 1)
+    {
+        printf("Game lost");
+    }
+    else if(gameState == 2)
+    {
+        printf("Game won");
+    }
 }
 
 void userInput(char* input, char guessArray[], int counter)
@@ -113,10 +120,9 @@ void quickSortGuessArray(char guesses[], int left, int right)
     }
 }
 
-int checkGuess(char solution[], char guesses[], char guessedLetter)
+int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
 {
     int correctGuess, lastGuessCorrect = 0;
-    printf("%i, %i\n", strlen(guesses), strlen(solution));
 
     for(int i = 0; i < strlen(solution) - 1; i++)
     {
@@ -142,24 +148,48 @@ int checkGuess(char solution[], char guesses[], char guessedLetter)
         }
         if(!correctGuess)
         {
-            printf("_ ");
+            printf("_");
         }
     }
     if(lastGuessCorrect)
     {
         printf("Your guess was correct!");
+        if(correctGuess)
+    {
+        return 2;
+    }
+        return 1;
     }
     else
     {
         printf("Wrong guess sucker!");
+        return 0;
     }
 
-    if(correctGuess)
+}
+int checkGameState(int lastGuessSuccess, int *correctGuesses, int guessCounter)
+{
+    int wrongGuesses = guessCounter - *correctGuesses;
+    printf("%i\n", *correctGuesses);
+    printf("%i\n", wrongGuesses);
+
+    switch(lastGuessSuccess)
     {
-        return 0
-    }
-    else
-    {
-        return 1;
+        case 0:
+            drawHangman(wrongGuesses);
+            if(wrongGuesses < 7)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        case 1:
+            correctGuesses++;
+            return 0;
+        case 2:
+            return 2;
+
     }
 }
