@@ -67,6 +67,29 @@ int setCursor(int x, int y)
 
  }
 
+ int countdown(int timeLeft, int winGame)
+ {
+    while(timeLeft != 0 && winGame = 1)
+    {
+        setCursor(60, 1);
+        printf("Timer: %d", timeLeft);
+        timeLeft--;
+        sleep(1);
+    }
+    winGame = 0;
+ }
+
+ void drawHeader() {
+    setCursor(17, 3);
+    printf("\xb0\xb1\xb2 _  _ ____ _  _ ____ _  _ ____ _  _ \xb2\xb1\xb0\n");
+    setCursor(17, 4);
+    printf("\xb0\xb1\xb2 |__| |__| |\\ | | __ |\\/| |__| |\\ | \xb2\xb1\xb0\n");
+    setCursor(17, 5);
+    printf("\xb0\xb1\xb2 |  | |  | | \\| |__] |  | |  | | \\| \xb2\xb1\xb0\n");
+    setCursor(17, 6);
+    printf("\xb0\xb1\xb2 ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ ^  ^ \xb2\xb1\xb0\n");
+ }
+
  int setColor(char color)
 {
     /*
@@ -101,19 +124,19 @@ int setCursor(int x, int y)
  void drawHangman(int wrongGuess)
  {
     printf("  +----+  \n");
-    setCursor(27, 12);
-    printf("  |    |  \n");
-    setCursor(27, 13);
-    printf("  O    |  \n");
     setCursor(27, 14);
-    printf(" /|\\   |  \n");
+    printf("  |    |  \n");
     setCursor(27, 15);
-    printf(" / \\   |  \n");
+    printf("  O    |  \n");
     setCursor(27, 16);
-    printf("     / |  \n");
+    printf(" /|\\   |  \n");
     setCursor(27, 17);
+    printf(" / \\   |  \n");
+    setCursor(27, 18);
+    printf("     / |  \n");
+    setCursor(27, 19);
     printf("=========\n");
-    setCursor(20, 18);
+    setCursor(20, 20);
     //setColor('4');
     printf("YOU KILLED THE HANGMAN! \n");
     //setColor('F');
