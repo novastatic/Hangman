@@ -26,7 +26,11 @@ void runGame()
         counter++;
         quickSortGuessArray(guesses, 0, counter - 1);
         lastGuessResult = checkGuessSuccess(solution, guesses, guessedLetter);
-        gameState = checkGameState(lastGuessResult, &correctGuesses, counter);
+        if(lastGuessResult == 1)
+        {
+            correctGuesses++;
+        }
+        gameState = checkGameState(lastGuessResult, correctGuesses, counter);
     }
     while(!gameState);
 
@@ -122,7 +126,7 @@ void quickSortGuessArray(char guesses[], int left, int right)
 
 int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
 {
-    int correctGuess, lastGuessCorrect = 0;
+    int correctGuess, lastGuessCorrect = 0, wordComplete = 1;
 
     for(int i = 0; i < strlen(solution) - 1; i++)
     {
@@ -149,15 +153,16 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
         if(!correctGuess)
         {
             printf("_");
+            wordComplete = 0;
         }
     }
     if(lastGuessCorrect)
     {
         printf("Your guess was correct!");
-        if(correctGuess)
-    {
-        return 2;
-    }
+        if(wordComplete)
+        {
+            return 2;
+        }
         return 1;
     }
     else
@@ -167,16 +172,14 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
     }
 
 }
-int checkGameState(int lastGuessSuccess, int *correctGuesses, int guessCounter)
+int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
 {
-    int wrongGuesses = guessCounter - *correctGuesses;
-    printf("%i\n", *correctGuesses);
-    printf("%i\n", wrongGuesses);
+    int wrongGuesses = guessCounter - correctGuesses;
 
     switch(lastGuessSuccess)
     {
         case 0:
-            drawHangman(wrongGuesses);
+            //drawHangman(wrongGuesses);
             if(wrongGuesses < 7)
             {
                 return 0;
