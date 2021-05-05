@@ -24,7 +24,9 @@ int setColor(char color);
 void drawFrame(int frameWidth, int frameHeight);
 void drawHangman(int wrongGuess);
 void drawHeader();
-void countDown(int timeLeft);
+void countDown(int timeLeft, int winGame);
+int *gameModeSelect();
+
 
 
 #endif // INTERFACE_H_INCLUDED

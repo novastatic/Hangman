@@ -10,8 +10,8 @@
 #include <ctype.h>
 #include <windows.h>
 #include <dos.h>
+#include <time.h>
 #include "Interface.h"
-
 
 
 /**
@@ -67,16 +67,31 @@ int setCursor(int x, int y)
 
  }
 
+ int *gameModeSelect()
+{
+    int *modeSelection = 0;
+
+    printf("\bChose your game mode: \n");
+    printf("1. Timelord (Type 1 to play against the 60 second timer) \n");
+    printf("2. Companion (Type 2 to play with a friend) \n");
+    printf("3. Mastermode (Type 3 to play with a friend against the timer)");
+    printf("\n\bYour choice: ");
+    scanf("%d", modeSelection);
+
+    return modeSelection;
+
+}
+
  int countdown(int timeLeft, int winGame)
  {
-    while(timeLeft != 0 && winGame = 1)
+    while(timeLeft != 0 && winGame == 1)
     {
         setCursor(60, 1);
         printf("Timer: %d", timeLeft);
         timeLeft--;
-        sleep(1);
+        Sleep(1);
     }
-    winGame = 0;
+    return timeLeft;
  }
 
  void drawHeader() {
