@@ -117,7 +117,7 @@ static int partition(char guesses[], int left, int right)
 
 void checkGuess(char solution[], char guesses[])
 {
-    int correctGuess;
+    int correctGuess, lastGuessCorrect;
     printf("%i", strlen(guesses));
     printf("%i", strlen(solution));
     for(int i = 0; i < strlen(solution) - 1; i++)
@@ -136,12 +136,24 @@ void checkGuess(char solution[], char guesses[])
                 {
                     printf("%c", tolower(guesses[j]));
                 }
+                if(j == strlen(guesses - 1))
+                {
+                    lastGuessCorrect = 1;
+                }
             }
         }
         if(!correctGuess)
         {
             printf("_ ");
         }
+    }
+    if(lastGuessCorrect)
+    {
+        printf("Your guess was correct!");
+    }
+    else
+    {
+        printf("Wrong guess sucker!");
     }
     printf("\n");
 }
