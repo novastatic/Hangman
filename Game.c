@@ -15,8 +15,6 @@ void runGame()
 
     generateWord(solution);
 
-    //setCursor(4, 5);
-    //printf("You have already guessed these letters: ");
     printf("%s", solution);
 
     do
@@ -25,6 +23,7 @@ void runGame()
         guesses[counter] = tolower(guessedLetter);
         counter++;
         quickSortGuessArray(guesses, 0, counter - 1);
+        printGivenGuesses(guesses);
         lastGuessResult = checkGuessSuccess(solution, guesses, guessedLetter);
         if(lastGuessResult == 1)
         {
@@ -179,7 +178,7 @@ int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
     switch(lastGuessSuccess)
     {
         case 0:
-            //drawHangman(wrongGuesses);
+            drawHangman(wrongGuesses);
             if(wrongGuesses < 7)
             {
                 return 0;
@@ -195,4 +194,20 @@ int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
             return 2;
 
     }
+}
+void printGivenGuesses(char guesses[])
+{
+    printf("You guessed letters until now: ");
+    for(int i = 0; i < strlen(guesses); i++)
+    {
+        if(i == strlen(guesses) - 1)
+        {
+            printf("%c", guesses[i]);
+        }
+        else
+        {
+            printf("%c, ", guesses[i]);
+        }
+    }
+    printf("\n");
 }
