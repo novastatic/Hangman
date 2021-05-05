@@ -128,7 +128,7 @@ int gameModeSelect()
      for (i = 0;1;i++)
      {
          timeSpent = (double)(clock() - begin) / CLOCKS_PER_SEC;
-         if (endGame == 0 || endGame == 1 || endGame == 2)
+         if (endGame != 0)
          {
              break;
              printf("Time spent on this round: %lf seconds. Congrats. \n", timeSpent);
