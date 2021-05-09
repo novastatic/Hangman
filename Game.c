@@ -13,22 +13,12 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter);
  **/
 void runGame()
 {
-    //variable declaration
     char guesses[28];
     char* solution = malloc(42);
     char guessedLetter;
-    int counter = 0, correctGuesses = 0, lastGuessResult, gameState = 0;
+    int counter = 0, correctGuesses, lastGuessResult, gameState;
 
-    //generating the guess word
     generateWord(solution);
-
-<<<<<<< HEAD
-    //loop for reading input then checking with the guess word and progressing the
-    //game accordingly
-    do
-    {
-        //getting user input
-=======
     double gameDuration(gameState);
 
     printf("%s", solution);
@@ -36,22 +26,16 @@ void runGame()
     do
     {
         double gameDuration(gameState);
->>>>>>> d67a024abb0d39e032cc492873235af66cde33a3
         userInput(&guessedLetter, guesses, counter);
-        //saving the given guess of the user to an array of the guesses
         guesses[counter] = tolower(guessedLetter);
         counter++;
-        //sorting the guess array in alphabetical order via quicksort
         quickSortGuessArray(guesses, 0, counter - 1);
-        //printing the given guesses
-        printGivenGuesses(guesses);
-        //getting the result of the last guess
         lastGuessResult = checkGuessSuccess(solution, guesses, guessedLetter);
-        //checking if the last guess was correct
         if(lastGuessResult == 1)
         {
             correctGuesses++;
         }
+        printGivenGuesses(guesses, counter, correctGuesses);
         //getting the game state so the game knows how to go on
         gameState = checkGameState(lastGuessResult, correctGuesses, counter);
     }
@@ -70,6 +54,7 @@ void runGame()
         printf("Game won!");
     }
 }
+
 /**
  *  This function gets the user input and saves
  *  it into an char pointer, it also needs the given guesses
@@ -79,28 +64,21 @@ void runGame()
  **/
 void userInput(char* input, char guessArray[], int counter)
 {
-    //variable declaration
     int check;
-    //cursor positioning
     setCursor(4, 19);
 
-    //do while loop to get repeated input if input is invalid
     do
     {
-        //getting user input
         check = 1;
         printf("Please input your guess: ");
         scanf("%c", input);
         fflush(stdin);
 
-        //checking if the user input is a letter
         if(isLetter(*input) == 0)
         {
-            printf("%i", isLetter(*input));
             printf("Your guess is not a letter\n");
             check = 0;
         }
-        //checking if the user already guessed this letter
         else
         {
             for(int i = 0; i < counter; i++)
@@ -113,7 +91,6 @@ void userInput(char* input, char guessArray[], int counter)
             }
         }
     }
-    //run as long as there is no valid input
     while(check == 0);
 }
 
@@ -126,7 +103,6 @@ void userInput(char* input, char guessArray[], int counter)
  **/
 int isLetter(char* letter)
 {
-    //checking if the input is a letter using isalpha method
     if(isalpha(letter) != 0)
     {
         return 1;
@@ -144,10 +120,8 @@ int isLetter(char* letter)
  **/
 void quickSortGuessArray(char guesses[], int left, int right)
 {
-    //variable declaration
     int i, j, pivot, temp;
 
-    //checking if left starting point is smaller than the one on the right
     if (left < right)
     {
         pivot = left;
@@ -157,7 +131,6 @@ void quickSortGuessArray(char guesses[], int left, int right)
 
         while(i < j)
         {
-            //finding a pair of entries to switch
             while(guesses[i] <= guesses[pivot] && i < right)
             {
                 i++;
@@ -166,7 +139,6 @@ void quickSortGuessArray(char guesses[], int left, int right)
             {
                 j--;
             }
-            //when pair is found switch them
             if(i < j)
             {
                 temp = guesses[i];
@@ -178,7 +150,6 @@ void quickSortGuessArray(char guesses[], int left, int right)
         guesses[pivot] = guesses[j];
         guesses[j] = temp;
 
-        //recursive function calling to get whole array sorted
         quickSortGuessArray(guesses, left, j - 1);
         quickSortGuessArray(guesses, j + 1, right);
     }
@@ -191,27 +162,24 @@ void quickSortGuessArray(char guesses[], int left, int right)
  **/
 int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
 {
-    //variable declaration
     int correctGuess, lastGuessCorrect = 0, wordComplete = 1;
 
-    //comparing solution with the given guesses
     for(int i = 0; i < strlen(solution) - 1; i++)
     {
         correctGuess = 0;
         for(int j = 0; j < strlen(guesses); j++)
         {
-            //when a match is found print the letter
             if(tolower(solution[i]) == tolower(guesses[j]))
             {
                 correctGuess = 1;
                 if(i == 0)
                 {
-                    setCursor(4+j, 18);
+                    //setCursor(4+j, 18);
                     printf("%c",toupper(guesses[j]));
                 }
                 else
                 {
-                    setCursor(4+j, 18);
+                    //setCursor(4+j, 18);
                     printf("%c", tolower(guesses[j]));
                 }
             }
@@ -222,7 +190,7 @@ int checkGuessSuccess(char solution[], char guesses[], char guessedLetter)
         }
         if(!correctGuess)
         {
-            setCursor(22, 14);
+            //setCursor(22, 14);
             printf("_");
             wordComplete = 0;
         }
@@ -273,8 +241,9 @@ int checkGameState(int lastGuessSuccess, int correctGuesses, int guessCounter)
 
     }
 }
-void printGivenGuesses(char guesses[])
+void printGivenGuesses(char guesses[], int guessCounter, int correctGuesses)
 {
+    //SetCursor(5, 20);
     printf("You guessed letters until now: ");
     for(int i = 0; i < strlen(guesses); i++)
     {
@@ -287,5 +256,5 @@ void printGivenGuesses(char guesses[])
             printf("%c, ", guesses[i]);
         }
     }
-    printf("\n");
+    printf("\nYou have guessed %i times, %i guesses were correct", guessCounter, correctGuesses);
 }
